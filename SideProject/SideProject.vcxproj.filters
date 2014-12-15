@@ -1,0 +1,259 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files\Scene Graph Stuff">
+      <UniqueIdentifier>{dd7ff258-656a-4c67-b835-77b25b052aac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Extra Stuff">
+      <UniqueIdentifier>{d31d0e60-6884-4846-ab67-c67fd00d2597}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Math">
+      <UniqueIdentifier>{3838b1a1-ffe5-4d5f-8546-e27d7ca76276}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Important">
+      <UniqueIdentifier>{6e8f5d3f-850f-49d6-8e88-98adb2abc6be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Camera">
+      <UniqueIdentifier>{0a29d068-0664-4cd1-b6fb-fe87d67b7d1a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Camera">
+      <UniqueIdentifier>{6501b87f-605b-4fce-a444-c888cf45a101}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Head">
+      <UniqueIdentifier>{eb311cab-aa36-4cf8-b38b-1d3e572626ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Scene Graph">
+      <UniqueIdentifier>{d2d7413d-5521-4fdd-a731-374501886887}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Important">
+      <UniqueIdentifier>{7ab62598-e2a8-4ff4-b32c-4aeebe29f2a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Extra Stuff">
+      <UniqueIdentifier>{9c988474-a96f-44cb-a35f-6652e8617a80}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Math">
+      <UniqueIdentifier>{e8c1788c-ec66-4fe5-9a90-3d1a82d3cbdb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Body">
+      <UniqueIdentifier>{fc91ecd2-c323-47b2-b4c3-8f3025eac5d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Arm">
+      <UniqueIdentifier>{9f08b294-cfb5-4b98-961a-a2a76c781f6b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Leg">
+      <UniqueIdentifier>{501bf983-09cc-45d2-bc77-f9051e9c945b}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="window.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="geode.cpp">
+      <Filter>Source Files\Scene Graph Stuff</Filter>
+    </ClCompile>
+    <ClCompile Include="group.cpp">
+      <Filter>Source Files\Scene Graph Stuff</Filter>
+    </ClCompile>
+    <ClCompile Include="matrixTransform.cpp">
+      <Filter>Source Files\Scene Graph Stuff</Filter>
+    </ClCompile>
+    <ClCompile Include="cube.cpp">
+      <Filter>Source Files\Scene Graph Stuff</Filter>
+    </ClCompile>
+    <ClCompile Include="GLee.c">
+      <Filter>Source Files\Extra Stuff</Filter>
+    </ClCompile>
+    <ClCompile Include="shader.cpp">
+      <Filter>Source Files\Extra Stuff</Filter>
+    </ClCompile>
+    <ClCompile Include="projection.cpp">
+      <Filter>Source Files\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="viewport.cpp">
+      <Filter>Source Files\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="camera.cpp">
+      <Filter>Source Files\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="Vector3.cpp">
+      <Filter>Source Files\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Vector4.cpp">
+      <Filter>Source Files\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Matrix4.cpp">
+      <Filter>Source Files\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="BezierCurve.cpp">
+      <Filter>Source Files\Important</Filter>
+    </ClCompile>
+    <ClCompile Include="bpatch.cpp">
+      <Filter>Source Files\Important</Filter>
+    </ClCompile>
+    <ClCompile Include="object.cpp">
+      <Filter>Source Files\Important</Filter>
+    </ClCompile>
+    <ClCompile Include="node.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="main.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="window.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="camera.h">
+      <Filter>Header Files\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="projection.h">
+      <Filter>Header Files\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="viewport.h">
+      <Filter>Header Files\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="cube.h">
+      <Filter>Header Files\Scene Graph</Filter>
+    </ClInclude>
+    <ClInclude Include="matrixTransform.h">
+      <Filter>Header Files\Scene Graph</Filter>
+    </ClInclude>
+    <ClInclude Include="geode.h">
+      <Filter>Header Files\Scene Graph</Filter>
+    </ClInclude>
+    <ClInclude Include="group.h">
+      <Filter>Header Files\Scene Graph</Filter>
+    </ClInclude>
+    <ClInclude Include="BezierCurve.h">
+      <Filter>Header Files\Important</Filter>
+    </ClInclude>
+    <ClInclude Include="bpatch.h">
+      <Filter>Header Files\Important</Filter>
+    </ClInclude>
+    <ClInclude Include="object.h">
+      <Filter>Header Files\Important</Filter>
+    </ClInclude>
+    <ClInclude Include="GLee.h">
+      <Filter>Header Files\Extra Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="shader.h">
+      <Filter>Header Files\Extra Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="SOIL.h">
+      <Filter>Header Files\Extra Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="Matrix4.h">
+      <Filter>Header Files\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector3.h">
+      <Filter>Header Files\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector4.h">
+      <Filter>Header Files\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="node.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="headback.jpg">
+      <Filter>Resource Files\Head</Filter>
+    </Image>
+    <Image Include="headbottom.jpg">
+      <Filter>Resource Files\Head</Filter>
+    </Image>
+    <Image Include="headfront.jpg">
+      <Filter>Resource Files\Head</Filter>
+    </Image>
+    <Image Include="headleft.jpg">
+      <Filter>Resource Files\Head</Filter>
+    </Image>
+    <Image Include="headright.jpg">
+      <Filter>Resource Files\Head</Filter>
+    </Image>
+    <Image Include="headtop.jpg">
+      <Filter>Resource Files\Head</Filter>
+    </Image>
+    <Image Include="blueprints.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="textures.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="armback.jpg">
+      <Filter>Resource Files\Arm</Filter>
+    </Image>
+    <Image Include="armbottom.jpg">
+      <Filter>Resource Files\Arm</Filter>
+    </Image>
+    <Image Include="armfront.jpg">
+      <Filter>Resource Files\Arm</Filter>
+    </Image>
+    <Image Include="armleft.jpg">
+      <Filter>Resource Files\Arm</Filter>
+    </Image>
+    <Image Include="armright.jpg">
+      <Filter>Resource Files\Arm</Filter>
+    </Image>
+    <Image Include="armtop.jpg">
+      <Filter>Resource Files\Arm</Filter>
+    </Image>
+    <Image Include="bodyback.jpg">
+      <Filter>Resource Files\Body</Filter>
+    </Image>
+    <Image Include="bodybottom.jpg">
+      <Filter>Resource Files\Body</Filter>
+    </Image>
+    <Image Include="bodyfront.jpg">
+      <Filter>Resource Files\Body</Filter>
+    </Image>
+    <Image Include="bodyleft.jpg">
+      <Filter>Resource Files\Body</Filter>
+    </Image>
+    <Image Include="bodyright.jpg">
+      <Filter>Resource Files\Body</Filter>
+    </Image>
+    <Image Include="bodytop.jpg">
+      <Filter>Resource Files\Body</Filter>
+    </Image>
+    <Image Include="legback.jpg">
+      <Filter>Resource Files\Leg</Filter>
+    </Image>
+    <Image Include="legbottom.jpg">
+      <Filter>Resource Files\Leg</Filter>
+    </Image>
+    <Image Include="legfront.jpg">
+      <Filter>Resource Files\Leg</Filter>
+    </Image>
+    <Image Include="legleft.jpg">
+      <Filter>Resource Files\Leg</Filter>
+    </Image>
+    <Image Include="legright.jpg">
+      <Filter>Resource Files\Leg</Filter>
+    </Image>
+    <Image Include="legtop.jpg">
+      <Filter>Resource Files\Leg</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="SOIL.lib">
+      <Filter>Resource Files</Filter>
+    </Library>
+  </ItemGroup>
+</Project>
