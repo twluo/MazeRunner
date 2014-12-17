@@ -13,6 +13,45 @@ void Camera::set(Vector3& a, Vector3& b, Vector3& c) {
 	e = a;
 	d = b;
 	up = c;
+	movement = Vector3(0, 0, 0);
+	Vector3 temp;
+	lookAt = d - e;
+	forward = d - e;
+	forward.normalize();
+	temp = forward;
+	temp.scale(-1);
+	backward = temp;
+	right = forward.cross(forward, up);
+	right.normalize();
+	temp = right;
+	temp.scale(-1);
+	left = temp;
+	upd = right.cross(right, forward);
+	upd.normalize();
+	temp = upd;
+	temp.scale(-1);
+	down = temp;
+	Vector3 x;
+	Vector3 y;
+	Vector3 z;
+	z = e - d;
+	z.normalize();
+	x = x.cross(up, z);
+	x.normalize();
+	y = y.cross(z, x);
+	y.normalize();
+	for (int i = 0; i < 3; i++) {
+		world2camera.set(i, 0, x.get(i));
+		world2camera.set(i, 1, y.get(i));
+		world2camera.set(i, 2, z.get(i));
+	}
+	makeInverse();
+}
+
+void Camera::update(Vector3& a, Vector3& b, Vector3& c) {
+	e = a;
+	d = b;
+	up = c;
 	Vector3 temp;
 	lookAt = d - e;
 	forward = d - e;
@@ -78,7 +117,7 @@ void Camera::moveLeft(double c){
 	temp.scale(c);
 	e = e + temp;
 	d = d + temp;
-	set(e, d, upd);
+	update(e, d, upd);
 }
 void Camera::moveRight(double c){
 	Vector3 temp;
@@ -86,7 +125,7 @@ void Camera::moveRight(double c){
 	temp.scale(c);
 	e = e + temp;
 	d = d + temp;
-	set(e, d, upd);
+	update(e, d, upd);
 }
 void Camera::moveUp(double c){
 	Vector3 temp;
@@ -94,7 +133,7 @@ void Camera::moveUp(double c){
 	temp.scale(c);
 	e = e + temp;
 	d = d + temp;
-	set(e, d, upd);
+	update(e, d, upd);
 }
 void Camera::moveDown(double c){
 	Vector3 temp;
@@ -102,7 +141,7 @@ void Camera::moveDown(double c){
 	temp.scale(c);
 	e = e + temp;
 	d = d + temp;
-	set(e, d, upd);
+	update(e, d, upd);
 }
 void Camera::moveForward(double c){
 	Vector3 temp;
@@ -110,7 +149,7 @@ void Camera::moveForward(double c){
 	temp.scale(c);
 	e = e + temp;
 	d = d + temp;
-	set(e, d, upd);
+	update(e, d, upd);
 }
 void Camera::moveBackward(double c){
 	Vector3 temp;
@@ -118,7 +157,7 @@ void Camera::moveBackward(double c){
 	temp.scale(c);
 	e = e + temp;
 	d = d + temp;
-	set(e, d, upd);
+	update(e, d, upd);
 }
 
 void Camera::rotateY(double c) {
@@ -129,7 +168,7 @@ void Camera::rotateY(double c) {
 	s = m * s;
 	lookAt.set(s.get(0), s.get(1), s.get(2));
 	d = e + lookAt;
-	set(e, d, upd);
+	update(e, d, upd);
 }
 void Camera::rotateX(double c){
 	Matrix4 m;
@@ -139,7 +178,26 @@ void Camera::rotateX(double c){
 	s = m * s;
 	lookAt.set(s.get(0), s.get(1), s.get(2));
 	d = e + lookAt;
-	set(e, d, upd);
+	update(e, d, upd);
+}
+
+void Camera::rotateDirectionY(double c) {
+	Matrix4 m;
+	Matrix4 rot;
+	Vector4 s;
+	s.set(d.getX(), d.getY(), d.getZ(), 1);
+	rot.makeRotate(c, upd);
+	movement.print("ASD");
+	m.makeTranslate(-movement.getX(), -movement.getY(), -movement.getZ());
+	rot = rot * m;
+	m.makeTranslate(movement.getX(), movement.getY(), movement.getZ());
+	rot = m * rot;
+	s = rot * s;
+	d.set(s.get(0), s.get(1), s.get(2));
+	s.set(e.getX(), e.getY(), e.getZ(), 1);
+	s = rot * s;
+	e.set(s.get(0), s.get(1), s.get(2));
+	update(e, d, upd);
 }
 
 void Camera::rotate(Vector3 direction, double c) {
@@ -150,7 +208,7 @@ void Camera::rotate(Vector3 direction, double c) {
 	s = m * s;
 	lookAt.set(s.get(0), s.get(1), s.get(2));
 	d = e + lookAt;
-	set(e, d, upd);
+	update(e, d, upd);
 }
 
 void Camera::move(Vector3 direction, double c) {
@@ -158,5 +216,7 @@ void Camera::move(Vector3 direction, double c) {
 	temp = direction;
 	temp.scale(c);
 	e = e + temp;
-	set(e, d, upd);
+	d = d + temp;
+	movement = movement + temp;
+	update(e, d, upd);
 }
