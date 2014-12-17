@@ -67,6 +67,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BezierCurve.cpp" />
+    <ClCompile Include="bigPatch.cpp" />
     <ClCompile Include="bpatch.cpp" />
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="cube.cpp" />
@@ -87,6 +88,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BezierCurve.h" />
+    <ClInclude Include="bigPatch.h" />
     <ClInclude Include="bpatch.h" />
     <ClInclude Include="camera.h" />
     <ClInclude Include="cube.h" />

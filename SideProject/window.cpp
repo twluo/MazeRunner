@@ -24,6 +24,7 @@ Vector4 initial = Vector4(-4, 4, 0, 0);
 Vector4 endV = Vector4(4, 4, 0, 0);
 bpatch bPatch;
 BezierCurve bCurve;
+bigPatch plane;
 
 //Flags
 int degree = 0;
@@ -130,7 +131,7 @@ void Window::idleCallback()
 	rightLegRotation.set(temp);
 	rightArmRotation.set(reverseTemp);
 	leftLegRotation.set(reverseTemp);
-  displayCallback();         // call display routine to show the object
+    displayCallback();         // call display routine to show the object
 }
 
 void Window::load() {
@@ -148,6 +149,14 @@ void Window::load() {
 	belzCamera.set(points[0], belzD, belzUp);
 	loadTextures();
 	loadCharacter();
+	Vector4 points[49];
+	for (int i = 0; i < 7; i++) {
+		for (int j = 0; j < 7; j++) {
+			int k = i * 7 + j;
+			points[k] = Vector4(i*2 - 6, 10, j*2 - 6, 0);
+		}
+	}
+	plane.definePoints(points);
 }
 //----------------------------------------------------------------------------
 // Callback method called by GLUT when graphics window is resized by the user
@@ -229,7 +238,7 @@ void Window::displayCallback()
 	glVertex3d(10, 0, 10);
 	glVertex3d(10, 0, -10);
 	glEnd();
-
+	plane.draw();
 	//Drawing Bezier Curve
 	glBegin(GL_LINE_STRIP);
 	for (int i = 0; i < 99; i++) {

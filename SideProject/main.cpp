@@ -26,7 +26,7 @@ int main(int argc, char *argv[])
   glutInit(&argc, argv);      	      	      // initialize GLUT
   glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);   // open an OpenGL context with double buffering, RGB colors, and depth buffering
   glutInitWindowSize(Window::width, Window::height);      // set initial window size
-  glutCreateWindow("MOHOHOHOHOHOHOHOHO");    	      // open window and set window title
+  glutCreateWindow("Side Proejct! :O :O :O ");    	      // open window and set window title
 
   glEnable(GL_DEPTH_TEST);            	      // enable depth buffering
   glClear(GL_DEPTH_BUFFER_BIT);       	      // clear depth buffer

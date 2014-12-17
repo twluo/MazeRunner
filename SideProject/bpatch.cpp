@@ -177,6 +177,7 @@ void bpatch::draw(){
 	Vector4 n1;
 	Vector4 n2;
 	Vector4 n3;
+	glColor3d(1, 0, 0);
 	glBegin(GL_QUADS);
 	for (int i = 0; i < 99; i++) {
 		glNormal3d(0, 1, 0);
@@ -222,4 +223,10 @@ void bpatch::setPoints(Vector4 p0, Vector4 p1, Vector4 p2, Vector4 p3,
 	points[13] = p13;
 	points[14] = p14;
 	points[15] = p15;
+}
+
+void bpatch::setPoints(Vector4 control[16]) {
+	for (int i = 0; i < 16; i++) {
+		points[i] = control[i];
+	}
 }

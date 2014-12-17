@@ -1,6 +1,8 @@
 #ifndef _BPATCH_H_
 #define _BPATCH_H_
-#include "window.h"
+#include "Vector4.h"
+#include "Matrix4.h"
+#include <GL/glut.h>
 class bpatch
 {
 private:
@@ -19,6 +21,7 @@ public:
 		Vector4, Vector4, Vector4, Vector4,
 		Vector4, Vector4, Vector4, Vector4,
 		Vector4, Vector4, Vector4, Vector4);
+	void setPoints(Vector4[16]);
 	void draw();
 	void evalBPatch();
 	bpatch();

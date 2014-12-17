@@ -20,6 +20,8 @@
 #include "Vector4.h"
 #include "projection.h"
 #include "viewport.h"
+#include "bigPatch.h"
+#include "bigPatch.h"
 #include "BezierCurve.h"
 #include "cube.h"
 #include "matrixTransform.h"
