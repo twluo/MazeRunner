@@ -13,7 +13,7 @@ protected:
 
 public:
 	Camera();   // Constructor
-	Matrix4& getMatrix();	
+	Matrix4& getMatrix();
 	Vector3 e;
 	Vector3 d;
 	Vector3 up;
@@ -24,6 +24,8 @@ public:
 	Vector3 upd;
 	Vector3 down;
 	Vector3 lookAt;
+	Vector3 movement;
+	void update(Vector3&, Vector3&, Vector3&);
 	void moveLeft(double);
 	void moveRight(double);
 	void moveUp(double);
@@ -38,6 +40,7 @@ public:
 	void rotateX(double);
 	void rotate(Vector3, double);
 	void move(Vector3, double);
+	void rotateDirectionY(double);
 };
 
 #endif

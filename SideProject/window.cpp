@@ -191,7 +191,6 @@ void Window::displayCallback()
 	}
 	//Drawing Light Source
 
-
 	Matrix4 temp;
 	temp.makeTranslate(position[0], position[1], position[2]);
 	setMatrix(glmatrix, temp);
@@ -281,12 +280,14 @@ void Window::keyboardCallback(unsigned char key, int xn, int yn) {
 		temp.makeRotateY(5);
 		ahead = temp * ahead;
 		side = temp * side;
+		camera.rotateDirectionY(5);
 		break;
 	case'e':
 		person.rotateY(-5);
 		temp.makeRotateY(-5);
 		ahead = temp * ahead;
 		side = temp * side;
+		camera.rotateDirectionY(-5);
 		break;
 	case 'z':
 		camera.moveUp(1);
@@ -296,17 +297,21 @@ void Window::keyboardCallback(unsigned char key, int xn, int yn) {
 		break;
 	case 'w':
 		walk = true;
-		person.move(ahead.get(0)/2, ahead.get(1)/2, ahead.get(2)/2);
+		person.move(ahead.get(0), ahead.get(1), ahead.get(2));
+		camera.move(Vector3(ahead.get(0),ahead.get(1),ahead.get(2)),1);
 		break;
 	case's':
 		walk = true;
-		person.move(-ahead.get(0)/2, -ahead.get(1)/2, -ahead.get(2)/2);
+		person.move(-ahead.get(0), -ahead.get(1), -ahead.get(2));
+		camera.move(Vector3(-ahead.get(0), -ahead.get(1), -ahead.get(2)), 1);
 		break;
 	case 'a':
-		person.move(side.get(0),side.get(1),side.get(2));
+		person.move(side.get(0), side.get(1), side.get(2));
+		camera.move(Vector3(side.get(0), side.get(1), side.get(2)), 1);
 		break;
 	case 'd':
 		person.move(-side.get(0), -side.get(1), -side.get(2));
+		camera.move(Vector3(-side.get(0), -side.get(1), -side.get(2)), 1);
 		break;
 	case 'i':
 		camera.moveForward(1);
@@ -326,7 +331,10 @@ void Window::keyboardCallback(unsigned char key, int xn, int yn) {
 		object.reset();
 		object.move(0, 1, 0);
 		belzCamera.set(points[0], belzD, belzUp);
-		camera.set(e,d,up);
+		person.reset();
+		camera.set(e, d, up);
+		ahead = Vector4(0, 0, -1, 0);
+		side = Vector4(-1, 0, 0, 0);
 		break;
 	case 'p':
 		cam = !cam;
