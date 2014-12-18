@@ -9,12 +9,13 @@ private:
 	double bCoef(double n, double i, double t);
 	double combo(double n, double i);
 	double factorial(double n);
-	Vector4 vertices[100][100];
-	Vector4 normals[100][100];
+	Vector4 vertices[101][101];
+	Vector4 normals[101][101];
 	Vector4 points[16];
 	Matrix4 setMatrix(int, int, int, int);
 	Matrix4 setMatrix(Vector4, Vector4, Vector4, Vector4);
 	Vector4 evalBCurve(Matrix4,double);
+	GLuint tex;
 
 public:
 	void setPoints(Vector4, Vector4, Vector4, Vector4,

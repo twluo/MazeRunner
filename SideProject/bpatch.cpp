@@ -1,4 +1,5 @@
 #include "bpatch.h"
+
 #include <iostream>
 // Based on Rex Tutorial
 
@@ -145,7 +146,7 @@ void bpatch::evalBPatch() {
 	Matrix4 pm3 = setMatrix(12, 13, 14, 15);
 	Matrix4 pm;
 	Matrix4 qm;
-	for (int i = 0; i < 100; i++) {
+	for (int i = 0; i < 101; i++) {
 		q0 = evalBCurve(pm0, v);
 		q1 = evalBCurve(pm1, v);
 		q2 = evalBCurve(pm2, v);
@@ -155,7 +156,7 @@ void bpatch::evalBPatch() {
 		p2 = evalBCurve(pm2, v+nDelta);
 		p3 = evalBCurve(pm3, v+nDelta);
 		w = 0;
-		for (int j = 0; j < 100; j++) {
+		for (int j = 0; j < 101; j++) {
 			qm = setMatrix(q0, q1, q2, q3);
 			pm = setMatrix(p0, p1, p2, p3);
 			vertices[i][j] = evalBCurve(qm , w);
@@ -187,9 +188,9 @@ void bpatch::draw(){
 	Vector4 n2;
 	Vector4 n3;
 	glBegin(GL_QUADS);
-	for (int i = 0; i < 99; i++) {
+	for (int i = 0; i < 100; i++) {
 		glNormal3d(0, 1, 0);
-		for (int j = 0; j < 99; j++) {
+		for (int j = 0; j <100 ; j++) {
 			q0 = vertices[i][j];
 			q1 = vertices[i][j + 1];
 			q2 = vertices[i + 1][j + 1];
