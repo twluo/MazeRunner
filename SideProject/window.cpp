@@ -6,7 +6,7 @@ int Window::height = 512;   // set window height in pixels here
 static float x = 0;
 static float y = -1;
 static float z = -6;
-float position[] = { -10.0, 10.0, 10.0, 0.0 };	// lightsource position
+float position[] = { 10, 10.0, 10, 0.0 };	// lightsource position
 
 //Directions
 Vector4 ahead = Vector4(0, 0, -1, 0);
@@ -35,6 +35,7 @@ bool altCam = false;
 bool back = false;
 bool automatic = true;
 bool walk = false;
+bool light = true;
 
 //Random Variables
 Camera belzCamera;
@@ -136,9 +137,11 @@ void Window::idleCallback()
 
 void Window::load() {
 	// Generate light source:
-	glLightfv(GL_LIGHT0, GL_POSITION, position);
+	Matrix4 temp;
+	temp.identity();
+	setMatrix(temp);
 	glEnable(GL_LIGHTING);
-	glEnable(GL_LIGHT0);
+	
 	camera.set(e, d, up);
 	object.move(0, 1, 0);
 	cameraObject.set(initial.get(0),initial.get(1),initial.get(2));
@@ -153,7 +156,7 @@ void Window::load() {
 	for (int i = 0; i < 7; i++) {
 		for (int j = 0; j < 7; j++) {
 			int k = i * 7 + j;
-			points[k] = Vector4(i*2 - 6, 10, j*2 - 6, 0);
+			points[k] = Vector4((double)i*2 - 6, (double)10, (double)j*2 - 6, 0);
 		}
 	}
 	plane.definePoints(points);
@@ -178,6 +181,14 @@ void Window::reshapeCallback(int w, int h)
 // Callback method called by GLUT when window readraw is necessary or when glutPostRedisplay() was called.
 void Window::displayCallback()
 {
+	glEnable(GL_LIGHT0);
+	if (light) {
+		glEnable(GL_LIGHT0);
+		glEnable(GL_NORMALIZE);
+		Globals::shader->bind();
+	}
+	else
+		Globals::shader->unbind();
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);  // clear color and depth buffers
 	glColor3f(0, 0, 1);
 	//Setting moving camera
@@ -205,7 +216,7 @@ void Window::displayCallback()
 	setMatrix(glmatrix, temp);
 	glColor3f(1, 1, 0);
 	glutSolidSphere(.5, 100, 100);
-
+	/*
 	//Seting main objects
 	glColor3d(1, 0, 0);
 	setMatrix(glmatrix, object.getMatrix());
@@ -236,7 +247,10 @@ void Window::displayCallback()
 	glVertex3d(-10, 0, 10);
 	glVertex3d(10, 0, 10);
 	glVertex3d(10, 0, -10);
-	glEnd();
+	glEnd();*/
+	setMatrix(glmatrix);
+	//glutSolidTeapot(5);
+	plane.animate();
 	plane.draw();
 	//Drawing Bezier Curve
 	glBegin(GL_LINE_STRIP);
@@ -251,11 +265,13 @@ void Window::displayCallback()
 	glEnd();
 
 	//Drawing Head
+	glActiveTexture(GL_TEXTURE0);
 	temp = glmatrix;
 	control.set(person.getMatrix());
 	character.draw(temp);
 	
 
+	uploadTextures();
 
 	//Drawing Camera
 	setMatrix(glmatrix, cameraObject.getMatrix());
@@ -274,6 +290,7 @@ void Window::displayCallback()
 			}
 		}
 	}
+	Globals::shader->unbind();
 	glFlush();
 	glutSwapBuffers();
 }
@@ -364,6 +381,9 @@ void Window::keyboardCallback(unsigned char key, int xn, int yn) {
 	case'.':
 		automatic = !automatic;
 		break;
+	case'/':
+		light = !light;
+		break;
 	}
 	glMatrixMode(GL_MODELVIEW);
 
@@ -446,8 +466,6 @@ void Window::setMatrix(Matrix4 camera) {
 	temp.transpose();
 	glLoadMatrixd(temp.getPointer());
 }
-
-
 
 void Window::loadCharacter() {
 	Matrix4 temp;
@@ -710,4 +728,23 @@ void Window::loadTextures() {
 		SOIL_CREATE_NEW_ID,
 		SOIL_FLAG_INVERT_Y
 		);
+}
+
+void Window::uploadTextures() {
+
+	glActiveTexture(GL_TEXTURE1);
+	glBindTexture(GL_TEXTURE_2D, head[4]);
+	glUniform1i(glGetUniformLocation(Globals::shader->getPid(), "topHead"), 1);
+	glActiveTexture(GL_TEXTURE2);
+	glBindTexture(GL_TEXTURE_2D, head[0]);
+	glUniform1i(glGetUniformLocation(Globals::shader->getPid(), "frontHead"), 2);
+	glActiveTexture(GL_TEXTURE3);
+	glBindTexture(GL_TEXTURE_2D, head[2]);
+	glUniform1i(glGetUniformLocation(Globals::shader->getPid(), "backHead"), 3);
+	glActiveTexture(GL_TEXTURE4);
+	glBindTexture(GL_TEXTURE_2D, head[1]);
+	glUniform1i(glGetUniformLocation(Globals::shader->getPid(), "leftHead"), 4);
+	glActiveTexture(GL_TEXTURE5);
+	glBindTexture(GL_TEXTURE_2D, head[3]);
+	glUniform1i(glGetUniformLocation(Globals::shader->getPid(), "rightHead"), 5);
 }

@@ -16,7 +16,6 @@ namespace Globals
 {
   Object object;
   Shader *shader;
-  Shader *sky;
 };
 
 int main(int argc, char *argv[])
@@ -55,6 +54,7 @@ int main(int argc, char *argv[])
     
   // Initialize cube matrix:
   Globals::object.getMatrix().identity();
+  Globals::shader = new Shader("perPixelShade.vert", "perPixelShade.frag", true);
   Window::load();
   glutMainLoop();
   return 0;

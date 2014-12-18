@@ -1,4 +1,5 @@
 #include "bpatch.h"
+#include <iostream>
 // Based on Rex Tutorial
 
 bpatch::bpatch()
@@ -127,7 +128,7 @@ void bpatch::evalBPatch() {
 	double v = 0;
 	double w = 0;
 	double delta = 0.01;
-	double nDelta = 0.00000001;
+	double nDelta = 1;
 	Vector4 q0;
 	Vector4 q1;
 	Vector4 q2;
@@ -158,11 +159,19 @@ void bpatch::evalBPatch() {
 			qm = setMatrix(q0, q1, q2, q3);
 			pm = setMatrix(p0, p1, p2, p3);
 			vertices[i][j] = evalBCurve(qm , w);
-			tanp = evalBCurve(qm, w + nDelta) - vertices[i][j];
+			tanp = evalBCurve(qm, w + nDelta);
+			//std::cout << w << "AS" << w + nDelta << std::endl;
+			//tanp.print("ASD");
+			//vertices[i][j].print("HOHO");
+			//std::cout << tanp.get(2) << std::endl;
+			tanp = tanp - vertices[i][j];
+			//tanp.print("RESLTU");
 			tanq = evalBCurve(pm, w) - vertices[i][j];
+			//tanq.print("AS");
 			tanp.normalize();
 			tanq.normalize();
-			normals[i][j] = tanp.cross(tanp,tanq);
+			normals[i][j] = tanp.cross(tanq,tanp);
+		//	normals[i][j].print("AS");
 			w = w + delta;
 		}
 		v = v + delta;
@@ -177,7 +186,6 @@ void bpatch::draw(){
 	Vector4 n1;
 	Vector4 n2;
 	Vector4 n3;
-	glColor3d(1, 0, 0);
 	glBegin(GL_QUADS);
 	for (int i = 0; i < 99; i++) {
 		glNormal3d(0, 1, 0);
@@ -190,12 +198,16 @@ void bpatch::draw(){
 			n1 = normals[i][j + 1];
 			n2 = normals[i + 1][j + 1];
 			n3 = normals[i + 1][j];
+			glColor3d(n0.get(1), n0.get(0), n0.get(2));
 			glNormal3d(n0.get(0), n0.get(1), n0.get(2));
 			glVertex3d(q0.get(0), q0.get(1), q0.get(2));
+			glColor3d(n1.get(1), n1.get(0), n1.get(2));
 			glNormal3d(n1.get(0), n1.get(1), n1.get(2));
 			glVertex3d(q1.get(0), q1.get(1), q1.get(2));
+			glColor3d(n2.get(1), n2.get(0), n2.get(2));
 			glNormal3d(n2.get(0), n2.get(1), n2.get(2));
 			glVertex3d(q2.get(0), q2.get(1), q2.get(2));
+			glColor3d(n3.get(1), n3.get(0), n3.get(2));
 			glNormal3d(n3.get(0), n3.get(1), n3.get(2));
 			glVertex3d(q3.get(0), q3.get(1), q3.get(2));
 		}
