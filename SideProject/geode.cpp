@@ -3,7 +3,7 @@
 Geode::Geode() {
 }
 
-void Geode::draw(Matrix4 C){
+void Geode::draw(Matrix4 C, bool shade){
 	Matrix4 Ctemp = C * m;
 	Vector4 tempcenter = Ctemp * center;
 	Vector4 tempscale = Ctemp * scale;
@@ -13,7 +13,7 @@ void Geode::draw(Matrix4 C){
 	glmatrix = Ctemp;
 	glmatrix.transpose();
 	glLoadMatrixd(glmatrix.getPointer());
-	render();
+	render(shade);
 }
 
 void Geode::setColor(double r, double g, double b) {

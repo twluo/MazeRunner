@@ -15,6 +15,7 @@ using namespace std;
 namespace Globals
 {
   Object object;
+  Shader *texShader;
   Shader *shader;
 };
 
@@ -22,6 +23,8 @@ int main(int argc, char *argv[])
 {
   float specular[]  = {0.0, 0.0, 0.0, 1.0};
   float shininess[] = {100.0};
+  float ambient[] = { 1, 1, 1, 1 };
+  float diffuse[] = { 1, 1, 1, 1 };
   glutInit(&argc, argv);      	      	      // initialize GLUT
   glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);   // open an OpenGL context with double buffering, RGB colors, and depth buffering
   glutInitWindowSize(Window::width, Window::height);      // set initial window size
@@ -37,6 +40,8 @@ int main(int argc, char *argv[])
   glEnable(GL_NORMALIZE);
 
   // Generate material properties:
+  glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, ambient);
+  glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, diffuse);
   glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, specular);
   glMaterialfv(GL_FRONT_AND_BACK, GL_SHININESS, shininess);
   glColorMaterial(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE);
@@ -54,6 +59,7 @@ int main(int argc, char *argv[])
     
   // Initialize cube matrix:
   Globals::object.getMatrix().identity();
+  Globals::texShader = new Shader("perPixelTexShader.vert", "perPixelTexShader.frag", true);
   Globals::shader = new Shader("perPixelShade.vert", "perPixelShade.frag", true);
   Window::load();
   glutMainLoop();

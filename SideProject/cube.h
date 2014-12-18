@@ -7,7 +7,7 @@ class Cube : public Geode {
 public:
 	Cube();
 	Cube(double);
-	void render();
+	void render(bool);
 	void setMatrix(Matrix4);
 };
 

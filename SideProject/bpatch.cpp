@@ -198,16 +198,16 @@ void bpatch::draw(){
 			n1 = normals[i][j + 1];
 			n2 = normals[i + 1][j + 1];
 			n3 = normals[i + 1][j];
-			glColor3d(n0.get(1), n0.get(0), n0.get(2));
+			//glColor3d(n0.get(1), n0.get(0), n0.get(2));
 			glNormal3d(n0.get(0), n0.get(1), n0.get(2));
 			glVertex3d(q0.get(0), q0.get(1), q0.get(2));
-			glColor3d(n1.get(1), n1.get(0), n1.get(2));
+			//glColor3d(n1.get(1), n1.get(0), n1.get(2));
 			glNormal3d(n1.get(0), n1.get(1), n1.get(2));
 			glVertex3d(q1.get(0), q1.get(1), q1.get(2));
-			glColor3d(n2.get(1), n2.get(0), n2.get(2));
+			//glColor3d(n2.get(1), n2.get(0), n2.get(2));
 			glNormal3d(n2.get(0), n2.get(1), n2.get(2));
 			glVertex3d(q2.get(0), q2.get(1), q2.get(2));
-			glColor3d(n3.get(1), n3.get(0), n3.get(2));
+			//glColor3d(n3.get(1), n3.get(0), n3.get(2));
 			glNormal3d(n3.get(0), n3.get(1), n3.get(2));
 			glVertex3d(q3.get(0), q3.get(1), q3.get(2));
 		}

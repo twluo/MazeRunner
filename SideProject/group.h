@@ -14,7 +14,7 @@ public:
 	void addChild(Node*);
 	void deleteChild(Node*);
 	void setMatrix(Matrix4 m);
-	virtual void draw(Matrix4 C);
+	virtual void draw(Matrix4 C, bool);
 };
 
 #endif

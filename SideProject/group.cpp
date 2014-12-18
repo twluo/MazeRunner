@@ -19,11 +19,11 @@ void Group::addChild(Node* temp){
 void Group::deleteChild(Node* temp){
 	children.remove(temp);
 }
-void Group::draw(Matrix4 C) {
+void Group::draw(Matrix4 C, bool shade) {
 	Matrix4 tempM = C * M;
 	for (std::list<Node*>::iterator it = children.begin(); it != children.end(); ++it) {
 		Node* temp = *it;
-		temp->draw(tempM);
+		temp->draw(tempM, shade);
 	}
 }
 

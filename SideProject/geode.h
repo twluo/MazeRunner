@@ -11,8 +11,8 @@ protected:
 	GLuint texture[6];
 public:
 	Geode();
-	void draw(Matrix4 C);
-	virtual void render() = 0;
+	void draw(Matrix4 C, bool);
+	virtual void render(bool) = 0;
 	void setColor(double, double, double);
 	void setTexture(GLuint tex[6]);
 	virtual void setMatrix(Matrix4) = 0;

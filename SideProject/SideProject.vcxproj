@@ -139,6 +139,12 @@
   <ItemGroup>
     <Library Include="SOIL.lib" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="perPixelShade.frag" />
+    <None Include="perPixelShade.vert" />
+    <None Include="perPixelTexShader.frag" />
+    <None Include="perPixelTexShader.vert" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

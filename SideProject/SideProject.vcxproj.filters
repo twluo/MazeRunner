@@ -112,7 +112,7 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="bigPatch.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Important</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -171,10 +171,10 @@
       <Filter>Header Files\Math</Filter>
     </ClInclude>
     <ClInclude Include="node.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Scene Graph</Filter>
     </ClInclude>
     <ClInclude Include="bigPatch.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Important</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -261,5 +261,19 @@
     <Library Include="SOIL.lib">
       <Filter>Resource Files</Filter>
     </Library>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="perPixelShade.frag">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="perPixelShade.vert">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="perPixelTexShader.frag">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="perPixelTexShader.vert">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

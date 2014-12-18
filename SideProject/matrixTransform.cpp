@@ -17,7 +17,7 @@ Matrix4 MatrixTransform::get() {
 	return M;
 }
 
-void MatrixTransform::draw(Matrix4 temp) {
+void MatrixTransform::draw(Matrix4 temp, bool shade) {
 	Matrix4 C = temp* M;
 	double x = 0;
 	double y = 0;
@@ -27,6 +27,6 @@ void MatrixTransform::draw(Matrix4 temp) {
 	for (std::list<Node*>::iterator it = children.begin(); it != children.end(); ++it) {
 		Node* tempNode = *it;
 		number++;
-		tempNode->draw(C);
+		tempNode->draw(C, shade);
 	}
 }

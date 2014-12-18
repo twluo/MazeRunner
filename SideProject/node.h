@@ -15,7 +15,7 @@ public:
 	Vector4 scale;
 	Node();
 	Node(std::string, Node*);
-	virtual void draw(Matrix4) = 0;
+	virtual void draw(Matrix4, bool) = 0;
 };
 
 #endif

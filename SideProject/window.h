@@ -44,7 +44,6 @@ class Window	  // OpenGL output window related routines
 	static void setMatrix(Matrix4);
 	static void loadTextures();
 	static void loadCharacter();
-	static void uploadTextures();
 };
 
 #endif

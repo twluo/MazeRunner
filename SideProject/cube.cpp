@@ -1,5 +1,5 @@
 #include "cube.h"
-
+#include "main.h"
 
 Cube::Cube() {
 
@@ -10,7 +10,7 @@ Cube::Cube(double s) {
 	size = s;
 	m.identity();
 }
-void Cube::render() {
+void Cube::render(bool shade) {
 	double i = size / 2;
 	glEnable(GL_TEXTURE_2D);
 	// Make sure no bytes are padded:
@@ -24,8 +24,13 @@ void Cube::render() {
 	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
 	glColor3d(1, 1, 1);
-
+	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, texture[2]);
+	glUniform1i(glGetUniformLocation(Globals::texShader->getPid(), "texture"), 0);
+	if (shade)
+		Globals::texShader->bind();
+	else
+		Globals::texShader->unbind();
 
 	glBegin(GL_QUADS);
 	glNormal3d(0, 0, 1);
@@ -38,8 +43,14 @@ void Cube::render() {
 	glTexCoord2d(0, 1);
 	glVertex3d(-i, i, i);
 	glEnd();
-	glBindTexture(GL_TEXTURE_2D, texture[3]);
+	Globals::texShader->unbind();
 
+	glBindTexture(GL_TEXTURE_2D, texture[3]);
+	glUniform1i(glGetUniformLocation(Globals::texShader->getPid(), "texture"), 0);
+	if (shade)
+		Globals::texShader->bind();
+	else
+		Globals::texShader->unbind();
 	glBegin(GL_QUADS);
 	glNormal3d(1, 0, 0);
 	glTexCoord2d(0, 0);
@@ -51,8 +62,14 @@ void Cube::render() {
 	glTexCoord2d(0, 1);
 	glVertex3d(-i, i, -i);
 	glEnd();
+	Globals::texShader->unbind();
 
 	glBindTexture(GL_TEXTURE_2D, texture[0]);
+	glUniform1i(glGetUniformLocation(Globals::texShader->getPid(), "texture"), 0);
+	if (shade)
+		Globals::texShader->bind();
+	else
+		Globals::texShader->unbind();
 
 	glBegin(GL_QUADS);
 	glNormal3d(0, 0, -1);
@@ -65,8 +82,14 @@ void Cube::render() {
 	glTexCoord2d(0, 1);
 	glVertex3d(i, i, -i);
 	glEnd();
+	Globals::texShader->unbind();
 
 	glBindTexture(GL_TEXTURE_2D, texture[1]);
+	glUniform1i(glGetUniformLocation(Globals::texShader->getPid(), "texture"), 0);
+	if (shade)
+		Globals::texShader->bind();
+	else
+		Globals::texShader->unbind();
 
 	glBegin(GL_QUADS);
 	glNormal3d(-1, 0, 0);
@@ -79,8 +102,14 @@ void Cube::render() {
 	glTexCoord2d(0, 1);
 	glVertex3d(i, i, i);
 	glEnd();
+	Globals::texShader->unbind();
 
 	glBindTexture(GL_TEXTURE_2D, texture[4]);
+	glUniform1i(glGetUniformLocation(Globals::texShader->getPid(), "texture"), 0);
+	if (shade)
+		Globals::texShader->bind();
+	else
+		Globals::texShader->unbind();
 
 	glBegin(GL_QUADS);
 	glNormal3d(0, 1, 0);
@@ -93,8 +122,14 @@ void Cube::render() {
 	glTexCoord2d(0, 1);
 	glVertex3d(-i, i, -i);
 	glEnd();
+	Globals::texShader->unbind();
 
 	glBindTexture(GL_TEXTURE_2D, texture[5]);
+	glUniform1i(glGetUniformLocation(Globals::texShader->getPid(), "texture"), 0);
+	if (shade)
+		Globals::texShader->bind();
+	else
+		Globals::texShader->unbind();
 
 	glBegin(GL_QUADS);
 	glNormal3d(0, -1, 0);
@@ -107,6 +142,7 @@ void Cube::render() {
 	glTexCoord2d(0, 1);
 	glVertex3d(-i, -i, -i);
 	glEnd();
+	Globals::texShader->unbind();
 
 	//glActiveTexture(GL_TEXTURE1);
 	glDisable(GL_TEXTURE_2D);
